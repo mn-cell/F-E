@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Förder-Dashboard: Handwerk & Produktion 4.0</title>
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --success: #2e7d32;
+            --accent: #ff9800;
+            --bg: #f8f9fa;
+            --text: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white; padding: 60px 20px; text-align: center;
+        }
+
+        .container { max-width: 1000px; margin: -40px auto 40px; padding: 0 20px; }
+
+        .card {
+            background: white; border-radius: 15px; padding: 35px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-bottom: 30px;
+        }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+
+        /* Rechner Styling */
+        .calc-row { 
+            display: grid; 
+            grid-template-columns: 2.5fr 1fr 1fr; 
+            gap: 15px; 
+            align-items: center; 
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #edf2f7;
+        }
+        
+        .label-text { font-size: 0.95rem; font-weight: 500; }
+        .label-hint { font-size: 0.75rem; color: #718096; display: block; }
+
+        input, select { 
+            width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 1rem;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, var(--secondary) 0%, #4a148c 100%);
+            color: white; padding: 30px; border-radius: 12px; text-align: center; margin-top: 20px;
+        }
+        .result-price { font-size: 2.5rem; font-weight: bold; display: block; color: #68d391; }
+
+        .example-card {
+            border-left: 5px solid var(--accent);
+            padding: 20px; background: #fffaf0; border-radius: 8px; margin-bottom: 10px;
+            transition: transform 0.2s;
+        }
+        .example-card:hover { transform: scale(1.02); }
+        .example-card h4 { color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; }
+        .example-tag { font-size: 0.7rem; background: #eee; padding: 2px 8px; border-radius: 10px; margin-left: 10px; color: #555; }
+
+        .btn {
+            display: flex; align-items: center; justify-content: center;
+            padding: 15px 25px; background: var(--success);
+            color: white; text-decoration: none; border-radius: 35px; font-weight: bold;
+            transition: all 0.3s; font-size: 0.9rem;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(46,125,50,0.2); }
+        .btn-icon { margin-right: 10px; font-size: 1.2rem; }
+
+        h2 { margin-bottom: 20px; color: var(--secondary); border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>⚙️ Handwerk & Produktion 4.0</h1>
+        <p>Ihre Fördermittel-Übersicht für Sachsen-Anhalt 2026</p>
+    </header>
+
+    <div class="container">
+        
+        <section class="card">
+            <h2>🔬 F&E Personal-Zuschuss</h2>
+            <p style="margin-bottom: 25px; font-size: 0.9rem;">Ermitteln Sie Ihren Zuschuss für Entwicklungsprojekte (z.B. neue Produktserien oder Verfahren).</p>
+            
+            <div class="calc-row" style="background: #f7fafc; padding: 10px; border-radius: 8px; font-weight: bold;">
+                <div>Qualitätsstufe</div>
+                <div>Stundenlohn (€)</div>
+                <div>Anzahl MA</div>
+            </div>
+
+            <div class="calc-row">
+                <div>
+                    <span class="label-text">A (Leitung / hochqualifiziert)</span>
+                    <span class="label-hint">ca. 50 – 70 €</span>
+                </div>
+                <input type="number" id="w_a" value="60" oninput="calc()">
+                <input type="number" id="ma_a" value="1" oninput="calc()">
+            </div>
+
+            <div class="calc-row">
+                <div>
+                    <span class="label-text">B (wissenschaftliche Mitarbeit)</span>
+                    <span class="label-hint">ca. 30 – 45 €</span>
+                </div>
+                <input type="number" id="w_b" value="38" oninput="calc()">
+                <input type="number" id="ma_b" value="0" oninput="calc()">
+            </div>
+
+            <div class="calc-row">
+                <div>
+                    <span class="label-text">C (wissenschaftlicher Mitarbeiter)</span>
+                    <span class="label-hint">ca. 22 – 30 €</span>
+                </div>
+                <input type="number" id="w_c" value="26" oninput="calc()">
+                <input type="number" id="ma_c" value="0" oninput="calc()">
+            </div>
+
+            <div class="calc-row">
+                <div>
+                    <span class="label-text">D (Fachkraft, qualifiziert)</span>
+                    <span class="label-hint">ca. 16 – 22 €</span>
+                </div>
+                <input type="number" id="w_d" value="20" oninput="calc()">
+                <input type="number" id="ma_d" value="0" oninput="calc()">
+            </div>
+
+            <div class="calc-row">
+                <div>
+                    <span class="label-text">E (Assistenz, Hilfskraft)</span>
+                    <span class="label-hint">ca. 10 – 15 €</span>
+                </div>
+                <input type="number" id="w_e" value="13" oninput="calc()">
+                <input type="number" id="ma_e" value="0" oninput="calc()">
+            </div>
+
+            <div class="grid" style="margin-top: 25px;">
+                <div>
+                    <label>Unternehmensgröße</label>
+                    <select id="size" onchange="calc()">
+                        <option value="0.45">Kleines Unternehmen (< 50 MA) - 45%</option>
+                        <option value="0.35">Mittleres Unternehmen (< 250 MA) - 35%</option>
+                    </select>
+                </div>
+                <div style="padding-top: 30px;">
+                    <input type="checkbox" id="koop" onchange="calc()" style="width: auto; margin-right: 8px;">
+                    <label>Kooperationsprojekt (+15% Bonus)</label>
+                </div>
+            </div>
+
+            <div class="result-box">
+                <span style="font-size: 1rem; opacity: 0.9;">Ihr voraussichtlicher Gesamtzuschuss:</span>
+                <span class="result-price" id="res_fe">0,00 €</span>
+                <small style="opacity: 0.8;">(Inkl. 40% Sachkostenpauschale)</small>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>🏗️ Investitions-Rechner</h2>
+            <div class="grid">
+                <div>
+                    <label>Netto-Investition (€)</label>
+                    <input type="number" id="inv_sum" value="50000" oninput="calc()">
+                </div>
+                <div>
+                    <label>Förder-Schwerpunkt</label>
+                    <select id="inv_prog" onchange="calc()">
+                        <option value="0.50">DIGITAL INNOVATION (50%)</option>
+                        <option value="0.35">SACHSEN-ANHALT INVESTIERT (35%)</option>
+                        <option value="0.30">Energie-Effizienz & Umwelt (30%)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="result-box" style="background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);">
+                <span style="font-size: 1rem; opacity: 0.9;">Möglicher Zuschuss für Technik:</span>
+                <span class="result-price" id="res_inv" style="color: #a5d6a7;">0,00 €</span>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>🏆 Was wird konkret gefördert? (Beispiele)</h2>
+            <div class="grid">
+                <div class="example-card">
+                    <h4>🔨 Holz & Metall <span class="example-tag">INVESTIERT</span></h4>
+                    <p style="font-size: 0.85rem;">Neue 5-Achs-Fräszentren, automatisierte Kantenanleimmaschinen oder CNC-gesteuerte Plasmaschneider zur Effizienzsteigerung.</p>
+                </div>
+                <div class="example-card">
+                    <h4>📐 Digitales Aufmaß <span class="example-tag">DIGITAL</span></h4>
+                    <p style="font-size: 0.85rem;">3D-Laserscanner für Vor-Ort-Termine, die Daten direkt in das CAD/ERP-System zur automatischen Verschnittplanung übertragen.</p>
+                </div>
+                <div class="example-card">
+                    <h4>🔌 Intelligente Halle <span class="example-tag">ENERGIE</span></h4>
+                    <p style="font-size: 0.85rem;">Austausch der Hallenbeleuchtung gegen sensorgesteuerte LED-Systeme und Modernisierung veralteter Druckluftanlagen.</p>
+                </div>
+                <div class="example-card">
+                    <h4>📦 Logistik & Lager <span class="example-tag">DIGITAL</span></h4>
+                    <p style="font-size: 0.85rem;">Einführung digitaler Warenwirtschaftssysteme (ERP) mit Tablet-Anbindung für Monteure und automatisierter Nachbestellung.</p>
+                </div>
+                <div class="example-card">
+                    <h4>🔥 Prozesswärme <span class="example-tag">UMWELT</span></h4>
+                    <p style="font-size: 0.85rem;">Anschaffung moderner Lackierkabinen mit Wärmerückgewinnung oder Umstellung von Gas auf hocheffiziente Wärmepumpen-Technik.</p>
+                </div>
+                <div class="example-card">
+                    <h4>🎓 Meister & Fachkräfte <span class="example-tag">MEISTERBONUS</span></h4>
+                    <p style="font-size: 0.85rem;">Direkte Boni für bestandene Meisterprüfungen und Zuschüsse zur Weiterbildung Ihrer Führungskräfte in der Produktion.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" style="text-align: center;">
+            <h2>💡 Jetzt Detail-Prüfung anfordern</h2>
+            <p style="margin-bottom: 25px;">Wählen Sie Ihren Ansprechpartner für ein kostenfreies 30-Minuten-Gespräch:</p>
+            <div class="grid">
+                <a href="https://calendly.com/michel-neumann" class="btn" style="background: var(--primary);">
+                    <span class="btn-icon">📅</span> Termin mit Michel Neumann
+                </a>
+                <a href="https://calendly.com/tim-lueth/erstgespraech" class="btn" style="background: var(--secondary);">
+                    <span class="btn-icon">📅</span> Termin mit Tim Lüth
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function calc() {
+            const h = 174;
+            let lohn = (document.getElementById('ma_a').value * document.getElementById('w_a').value * h * 18) +
+                       (document.getElementById('ma_b').value * document.getElementById('w_b').value * h * 18) +
+                       (document.getElementById('ma_c').value * document.getElementById('w_c').value * h * 18) +
+                       (document.getElementById('ma_d').value * document.getElementById('w_d').value * h * 6) +
+                       (document.getElementById('ma_e').value * document.getElementById('w_e').value * h * 6);
+
+            let gesamt = lohn * 1.40;
+            let q = parseFloat(document.getElementById('size').value);
+            if(document.getElementById('koop').checked) q += 0.15;
+            
+            document.getElementById('res_fe').innerText = (gesamt * q).toLocaleString('de-DE', {style: 'currency', currency: 'EUR'});
+
+            let iSum = document.getElementById('inv_sum').value;
+            let iQ = document.getElementById('inv_prog').value;
+            document.getElementById('res_inv').innerText = (iSum * iQ).toLocaleString('de-DE', {style: 'currency', currency: 'EUR'});
+        }
+        calc();
+    </script>
+</body>
+</html>
