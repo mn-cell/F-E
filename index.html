@@ -25,20 +25,25 @@
             min-height: 100vh;
         }
 
-        .header { 
-            background: var(--white); 
-            color: var(--primary); 
-            padding: 40px 20px 80px 20px; 
+        .logo-section {
+            background: var(--white);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+        }
+        .logo { max-width: 220px; height: auto; }
+
+        .header-title-area { 
+            background: var(--primary); 
+            color: var(--white); 
+            padding: 50px 20px 100px 20px; 
             text-align: center;
         }
 
-        .logo-container { margin-bottom: 20px; }
-        .logo { max-width: 280px; height: auto; display: inline-block; }
+        .header-title-area h1 { font-weight: 800; font-size: 2.2rem; margin-bottom: 5px; color: var(--white); }
+        .header-title-area p { opacity: 0.9; font-weight: 400; font-size: 1.1rem; color: var(--secondary); }
 
-        .header h1 { font-weight: 800; font-size: 2.2rem; margin-bottom: 5px; color: var(--primary); }
-        .header p { opacity: 0.8; font-weight: 400; font-size: 1.1rem; color: var(--secondary); }
-
-        .container { max-width: 1000px; margin: -50px auto 40px; padding: 0 20px; flex: 1; }
+        .container { max-width: 1000px; margin: -70px auto 40px; padding: 0 20px; flex: 1; }
         
         .card { 
             background: var(--white); 
@@ -49,6 +54,15 @@
             border-top: 5px solid var(--secondary);
         }
         
+        /* Goldene Icons */
+        .section-icon {
+            fill: var(--secondary);
+            width: 45px;
+            height: 45px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
         h2 { margin-bottom: 20px; color: var(--primary); font-size: 1.4rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         
         .calc-grid { 
@@ -89,6 +103,7 @@
             border-radius: 12px; 
             text-align: center; 
             margin-top: 20px;
+            border-bottom: 4px solid var(--secondary);
         }
 
         .result-label { font-size: 1rem; opacity: 0.9; display: block; margin-bottom: 10px; }
@@ -115,7 +130,6 @@
         }
         .btn-blue { background: var(--primary); border: 1px solid var(--secondary); }
 
-        /* NEU: Footer Styling */
         footer {
             background: var(--primary);
             color: var(--white);
@@ -124,22 +138,16 @@
             font-size: 0.85rem;
             margin-top: auto;
         }
-        footer a {
-            color: var(--secondary);
-            text-decoration: none;
-            margin: 0 10px;
-            transition: opacity 0.2s;
-        }
-        footer a:hover { opacity: 0.8; }
-        .footer-links { margin-bottom: 10px; }
+        footer a { color: var(--secondary); text-decoration: none; margin: 0 10px; }
     </style>
 </head>
 <body>
 
-<header class="header">
-    <div class="logo-container">
-        <img src="logo.png" alt="ELBCONCEPT" class="logo">
-    </div>
+<div class="logo-section">
+    <img src="logo.png" alt="ELBCONCEPT" class="logo">
+</div>
+
+<header class="header-title-area">
     <h1>Handwerk & Produktion 4.0</h1>
     <p>Förder-Kalkulator Sachsen-Anhalt 2026</p>
 </header>
@@ -147,7 +155,8 @@
 <div class="container">
     
     <section class="card">
-        <h2>🔬 Personal-Zuschuss (F&E)</h2>
+        <svg class="section-icon" viewBox="0 0 24 24"><path d="M11,21H5V19H7V17.91C5.23,17.41 3.89,15.9 3.32,14L4,13.73C4.5,15.38 5.86,16.5 7.5,16.5C8,16.5 8.47,16.39 8.9,16.18L8.13,13.9C7.45,14.27 6.64,14.37 5.89,14.16L6.42,12.19C7.03,12.36 7.69,12.28 8.24,11.96L7.47,9.69C6.1,10.23 4.54,9.54 4,8.17C3.46,6.8 4.15,5.24 5.52,4.7C6.89,4.16 8.45,4.85 8.99,6.22C9.25,6.87 9.25,7.58 9,8.22L9.77,10.5C10.32,10.18 10.97,10.1 11.58,10.27L11.05,12.24C10.3,12.03 9.48,12.13 8.8,12.5L9.57,14.77C10,14.6 10.5,14.5 11,14.5C12.64,14.5 14,15.62 14.5,17.27L15.18,17C14.61,15.1 13.27,13.59 11.5,13.09V12H13.5V13.09C15.27,13.59 16.61,15.1 17.18,17L17.86,16.73C18.36,18.38 19.71,19.5 21.36,19.5H22V21.5H16.36C14.71,21.5 13.36,20.38 12.86,18.73L12.18,19V21H11Z" /></svg>
+        <h2>Personal-Zuschuss (F&E)</h2>
         <div class="calc-grid header-row">
             <div>Kategorie</div>
             <div>Stunden €</div>
@@ -205,7 +214,8 @@
     </section>
 
     <section class="card">
-        <h2>🏗️ Investitions-Rechner</h2>
+        <svg class="section-icon" viewBox="0 0 24 24"><path d="M19,8L15,12H18V20H6V12H9L5,8V6H19V8M13,2V4H11V2H13M12,4.5A1.5,1.5 0 0,1 13.5,6A1.5,1.5 0 0,1 12,7.5A1.5,1.5 0 0,1 10.5,6A1.5,1.5 0 0,1 12,4.5Z" /></svg>
+        <h2>Investitions-Rechner</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
             <div>
                 <label style="font-size: 0.8rem; font-weight: bold;">Netto-Investition (€)</label>
@@ -225,30 +235,31 @@
         <div class="example-grid">
             <div class="example-card">
                 <h4>💻 Digital Innovation</h4>
-                <p>KI-basierte Auftragssteuerung, vernetzte ERP-Systeme oder mobile Baustellendokumentation per Tablet.</p>
+                <p>KI-basierte Auftragssteuerung, vernetzte ERP-Systeme oder mobile Baustellendokumentation.</p>
             </div>
             <div class="example-card">
                 <h4>⚙️ SA Investiert</h4>
-                <p>Anschaffung von 5-Achs-Fräszentren, neuen Lackieranlagen oder Erweiterung der Produktionshalle.</p>
+                <p>Anschaffung von 5-Achs-Fräszentren, neuen Lackieranlagen oder Hallenerweiterung.</p>
             </div>
             <div class="example-card">
                 <h4>🌱 Energie & Umwelt</h4>
-                <p>Austausch alter Heizungsanlagen, Installation von Wärmerückgewinnung oder hocheffiziente LED-Hallenbeleuchtung.</p>
+                <p>Wärmerückgewinnung, neue Heizsysteme oder hocheffiziente LED-Hallenbeleuchtung.</p>
             </div>
             <div class="example-card">
                 <h4>🛠️ Modernisierung</h4>
-                <p>Automatisierung von Arbeitsschritten durch Roboter-Arme (Cobots) in der Fertigung.</p>
+                <p>Automatisierung durch Roboter-Arme (Cobots) in der Fertigungslinie.</p>
             </div>
         </div>
 
-        <div class="result-box" style="border: 2px solid var(--secondary);">
+        <div class="result-box">
             <span class="result-label">Zuschuss für Technik & Modernisierung:</span>
             <span class="result-price" id="res_inv">0,00 €</span>
         </div>
     </section>
 
     <section class="card" style="text-align: center;">
-        <h2>📞 Kostenfreies Erstgespräch</h2>
+        <svg class="section-icon" style="margin: 0 auto 10px;" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
+        <h2>Kostenfreies Erstgespräch</h2>
         <p style="font-size: 0.9rem; margin-bottom: 10px;">Sprechen Sie direkt mit unseren Experten über Ihre Projekte:</p>
         <div class="btn-grid">
             <a href="https://calendly.com/michel-neumann" class="btn">Termin Michel Neumann</a>
