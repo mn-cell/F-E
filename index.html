@@ -54,7 +54,6 @@
             border-top: 5px solid var(--secondary);
         }
         
-        /* Goldene Icons */
         .section-icon {
             fill: var(--secondary);
             width: 45px;
@@ -159,8 +158,8 @@
         <h2>Personal-Zuschuss (F&E)</h2>
         <div class="calc-grid header-row">
             <div>Kategorie</div>
-            <div>Stunden €</div>
-            <div>Monat €</div>
+            <div>Stundenlohn</div>
+            <div>Monatslohn</div>
             <div>Anzahl</div>
         </div>
 
@@ -224,9 +223,9 @@
             <div>
                 <label style="font-size: 0.8rem; font-weight: bold;">Programm wählen</label>
                 <select id="inv_prog" onchange="calc()">
-                    <option value="0.50">DIGITAL INNOVATION (50%)</option>
-                    <option value="0.35">SACHSEN-ANHALT INVESTIERT (35%)</option>
-                    <option value="0.30">Energie-Effizienz & Umwelt (30%)</option>
+                    <option value="0.50">DIGITAL INNOVATION (max. 70.000 €)</option>
+                    <option value="0.35">SACHSEN-ANHALT INVESTIERT (max. 300.000 €)</option>
+                    <option value="0.30">Energie & Umwelt (max. 1.000.000 €)</option>
                 </select>
             </div>
         </div>
@@ -252,6 +251,7 @@
         </div>
 
         <div class="result-box">
+            <div id="max_warn_inv" class="max-tag">⚠️ Maximalförderung für dieses Programm erreicht</div>
             <span class="result-label">Zuschuss für Technik & Modernisierung:</span>
             <span class="result-price" id="res_inv">0,00 €</span>
         </div>
@@ -287,6 +287,7 @@
         calc();
     }
     function calc() {
+        // F&E Kalkulation
         let sum = (document.getElementById('ma_a').value * document.getElementById('h_a').value * HOURS * 18) +
                   (document.getElementById('ma_b').value * document.getElementById('h_b').value * HOURS * 18) +
                   (document.getElementById('ma_c').value * document.getElementById('h_c').value * HOURS * 18) +
@@ -299,9 +300,22 @@
         else { document.getElementById('max_warn').style.display = 'none'; }
         document.getElementById('res_fe').innerText = res.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'});
         
+        // Invest Kalkulation mit Deckel
         let iSum = document.getElementById('inv_sum').value;
-        let iQ = document.getElementById('inv_prog').value;
-        document.getElementById('res_inv').innerText = (iSum * iQ).toLocaleString('de-DE', {style: 'currency', currency: 'EUR'});
+        let iQ = parseFloat(document.getElementById('inv_prog').value);
+        let iRes = iSum * iQ;
+        let iMax = 1000000; // Default Energie
+
+        if(iQ === 0.50) iMax = 70000;
+        if(iQ === 0.35) iMax = 300000;
+
+        if(iRes > iMax) {
+            iRes = iMax;
+            document.getElementById('max_warn_inv').style.display = 'block';
+        } else {
+            document.getElementById('max_warn_inv').style.display = 'none';
+        }
+        document.getElementById('res_inv').innerText = iRes.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'});
     }
 </script>
 </body>
